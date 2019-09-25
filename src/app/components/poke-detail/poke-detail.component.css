@@ -1,0 +1,22 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.poke-card {
+  max-width: 200px;
+  margin: 20px;
+}
+
+.type-pokemon {
+  display: inline-block;
+  padding: 5px;
+  background-color: gray;
+  border-radius: 5px;
+  margin: 0px 3px;
+  color: white;
+}
+
+.button-container {
+  text-align: center;
+}

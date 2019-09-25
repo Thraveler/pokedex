@@ -1,0 +1,54 @@
+<p class="instructions">
+  Choose up to 10 Pokémon, then click on show selection
+</p>
+<div id="filter-container">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="mat-elevation-z8">
+
+
+  <table mat-table matSort [dataSource]="dataSource">
+
+    <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (change)="$event ? checkLimit($event, row) : null"
+                    [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name | uppercase }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+</div>
+<div *ngIf="selection.selected[0]" class="button-container">
+  <button mat-raised-button color="warn"
+    (click)="resetSelected()"
+    *ngIf="pokemonSelected">Clear selection</button>
+    <a mat-raised-button color="primary" 
+      (click)="getPokeDetails()"
+      *ngIf="!pokemonSelected">Show selection</a>
+</div>
+
+<div *ngIf="pokemonSelected">
+  <app-poke-detail [pokemonSelected]="pokemonSelected"></app-poke-detail>
+</div>

@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+}
+
+div.mat-elevation-z8 {
+  margin: 0 3% 2% 3%;
+}
+
+#filter-container {
+  padding: 0 3% 0 3%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-column-select {
+  overflow: initial;
+}
+
+.button-container {
+  text-align: center;
+}
+
+.instructions {
+  color: gray;
+  margin: 3% 3% 0 3%;
+}
